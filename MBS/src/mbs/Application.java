@@ -29,7 +29,6 @@ public class Application {
 	}
 	
 	public double readPH() {
-		System.out.println(phFile.getAbsolutePath());
 		return Double.parseDouble(this.phScanner.nextLine());
 	}
 	

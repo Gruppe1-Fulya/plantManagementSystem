@@ -1,11 +1,27 @@
 package mbs;
 
+import java.io.*;
+import java.net.*;
+
 public class Communication {
 	public String makePackage(int id, double ph, double light, double water) {
-		return String.format("%d %lf %lf %lf",id, ph, light, water); //id ph light water
+		return String.format("%d-%f-%f-%f",id, ph, light, water); //id ph light water
 	}
 	
 	public void sendPackage(String s) {
-		
+		try {
+			Socket daSocket = new Socket("localhost", 12345);
+			PrintWriter daOut = new PrintWriter(daSocket.getOutputStream(), true);
+			BufferedReader daIn = new BufferedReader(new InputStreamReader(daSocket.getInputStream()));
+			daOut.println(s);
+			
+			daOut.close();
+            daIn.close();
+            daSocket.close();
+			
+			
+		}catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
