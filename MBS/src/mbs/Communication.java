@@ -10,7 +10,7 @@ public class Communication {
 	
 	public void sendPackage(String s) {
 		try {
-			Socket daSocket = new Socket("localhost", 12345);
+			Socket daSocket = new Socket("localhost", 4242);
 			PrintWriter daOut = new PrintWriter(daSocket.getOutputStream(), true);
 			BufferedReader daIn = new BufferedReader(new InputStreamReader(daSocket.getInputStream()));
 			daOut.println(s);
@@ -18,6 +18,8 @@ public class Communication {
 			daOut.close();
             daIn.close();
             daSocket.close();
+            
+            System.out.println(s);
 			
 			
 		}catch (IOException e) {
